@@ -1,18 +1,57 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <HeaderCompo class="header"></HeaderCompo>
+    <div class="main-content">
+      <SidebarCompo class="left-sidebar"></SidebarCompo>
+      <div class="content"> <!-- Main content goes here --> 
+        Main content<br>goes here...
+      </div> 
+      <SidebarCompo class="right-sidebar"></SidebarCompo>
+    </div>
+    <FooterCompo class="footer"></FooterCompo> 
+  </div> 
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import FooterCompo from '@/components/FooterCompo.vue';
+import HeaderCompo from '@/components/HeaderCompo.vue';
+import SidebarCompo from '@/components/SidebarCompo.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    HeaderCompo,
+    SidebarCompo, 
+    SidebarCompo,
+    FooterCompo
   }
 }
 </script>
+
+<style scoped>
+  .main-content {
+      flex:1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .header, .footer, .left-sidebar, .right-sidebar {
+    background: lightgray;
+    margin: 5px;
+    border-radius: 10px;
+  }
+
+  @media all and (min-width: 600px) {
+    .left-sidebar, .right-sidebar { flex: 1 0 0; }
+  }
+    
+  @media all and (min-width: 800px) {
+      .main-content    { flex: 3 0px; }
+      .left-sidebar { order: 0; } 
+      .main-content    { order: 2; }
+      .right-sidebar { order: 3; }
+      .footer  { order: 4; }
+  }
+</style>
