@@ -1,8 +1,8 @@
 <template>
     <div class="footercompo">
-        <p>
-            This is a footer.
-        </p>
+        <h1>
+            Footer
+        </h1>
     </div>
 </template>
   

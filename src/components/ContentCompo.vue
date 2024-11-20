@@ -1,0 +1,52 @@
+<template>
+    <div class="contentcompo">
+        <p class="posts" v-for="post in postsList" :key="post.id">
+            <table width="100%">
+                <tr>
+                    <td>{{post.username}}</td>
+                    <td style="text-align: right">{{post.datetime}}</td>
+                </tr>
+            </table>
+            <img v-if="post.image !== ''" :src="post.image">
+            <br>
+            {{post.text}}
+            <table width="100%">
+                <tr>
+                    <td><img src="../assets/like.png" height="25" width="25"></td>
+                    <td style="text-align: right">{{post.likes}} likes</td>
+                </tr>
+            </table>
+        </p>
+    </div>
+</template>
+  
+<script>
+    export default {
+        name: 'ContentCompo',
+        data: function() {
+            return {
+            }},
+        computed: {
+            postsList(){
+                return this.$store.state.postsList
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .contentcompo {
+        background-color: transparent;
+        width: 60%;
+        height: 100%;
+    }
+
+    .posts {
+        background-color: lightgray;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: left;
+    }
+</style>

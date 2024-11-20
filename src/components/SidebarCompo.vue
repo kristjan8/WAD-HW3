@@ -1,6 +1,6 @@
 <template>
     <div class="sidebarcompo">
-        Sidebar
+        
     </div>
 </template>
   
@@ -13,6 +13,6 @@
 <style scoped>
     .sidebarcompo {
         width: 20%;
-        height: 100%;
+        height: 100vh;
     }
 </style>

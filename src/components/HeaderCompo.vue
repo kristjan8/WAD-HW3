@@ -1,9 +1,10 @@
 <template>
     <div class="headercompo">
-        <p>
-            This is a header.
-        </p>
-
+        <h1>
+            Header component
+        </h1>
+        <button v-on:click=""> Home </button>
+        <button v-on:click=""> Log in </button>
     </div>
 </template>
   
@@ -16,5 +17,10 @@
 <style scoped>
     .headercompo {
         height: 100px;
+    }
+
+    button {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 </style>

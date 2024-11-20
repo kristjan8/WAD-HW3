@@ -3,9 +3,7 @@
     <HeaderCompo class="header"></HeaderCompo>
     <div class="main-content">
       <SidebarCompo class="left-sidebar"></SidebarCompo>
-      <div class="content"> <!-- Main content goes here --> 
-        Main content<br>goes here...
-      </div> 
+      <ContentCompo class="content"></ContentCompo>
       <SidebarCompo class="right-sidebar"></SidebarCompo>
     </div>
     <FooterCompo class="footer"></FooterCompo> 
@@ -14,6 +12,7 @@
 
 <script>
 // @ is an alias to /src
+import ContentCompo from '@/components/ContentCompo.vue';
 import FooterCompo from '@/components/FooterCompo.vue';
 import HeaderCompo from '@/components/HeaderCompo.vue';
 import SidebarCompo from '@/components/SidebarCompo.vue';
@@ -22,7 +21,8 @@ export default {
   name: 'HomeView',
   components: {
     HeaderCompo,
-    SidebarCompo, 
+    SidebarCompo,
+    ContentCompo,
     SidebarCompo,
     FooterCompo
   }
@@ -35,10 +35,10 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-  }
+    }
 
   .header, .footer, .left-sidebar, .right-sidebar {
-    background: lightgray;
+    background: gray;
     margin: 5px;
     border-radius: 10px;
   }
