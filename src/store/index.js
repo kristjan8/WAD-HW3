@@ -124,8 +124,25 @@ export default createStore({
     },
   },
   mutations: {
+    INCREMENT_LIKES(state, postId) { 
+        const post = state.postsList.find(post => post.id === postId); 
+        if (post) {
+            post.likes++; 
+        } 
+    },
+    RESET_LIKES(state) { 
+        for (const post of state.postsList) {
+            post.likes = 0; 
+        }
+     },
   },
   actions: {
+    incrementLikes({ commit }, postId) { 
+        commit('INCREMENT_LIKES', postId); 
+    },
+    resetLikes({ commit }) { 
+        commit('RESET_LIKES'); 
+    },
   },
   modules: {
   }

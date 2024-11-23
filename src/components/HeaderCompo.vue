@@ -3,8 +3,8 @@
         <h1>
             Header component
         </h1>
-        <button v-on:click=""> Home </button>
-        <button v-on:click=""> Log in </button>
+            <router-link to="/" class="button">Home</router-link>
+            <router-link to="/login" class="button">Log in</router-link>
     </div>
 </template>
   
@@ -19,8 +19,13 @@
         height: 100px;
     }
 
-    button {
-        margin-left: 10px;
-        margin-right: 10px;
+    .button {
+        background-color:midnightblue;
+        color: aliceblue;
+        text-decoration: none;
+        padding: 10px;
+        padding-inline: 30px;
+        border-radius: 20px;
+        margin: 10px;
     }
 </style>
