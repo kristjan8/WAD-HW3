@@ -21,7 +21,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .logincompo {
-      background-color: lightgray;
+      background-color: blue;
       width: 60%;
       height: 100%;
   }

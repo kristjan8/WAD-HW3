@@ -4,7 +4,7 @@
             Header component
         </h1>
             <router-link to="/" class="button">Home</router-link>
-            <router-link to="/login" class="button">Log in</router-link>
+            <router-link to="/login" class="button">Signup</router-link>
     </div>
 </template>
   

@@ -12,7 +12,7 @@
             {{post.text}}
             <table width="100%">
                 <tr>
-                    <td><img src="../assets/like.png" height="25" width="25" @click="likePost(post.id)"></td>
+                    <td><img src="../assets/like.png" height="25" width="25" @click="likePost(post.id)" style="cursor: pointer;"></td>
                     <td style="text-align:right">{{post.likes}} likes</td>
                 </tr>
             </table>
@@ -65,5 +65,10 @@
         padding: 10px;
         padding-inline: 30px;
         border-radius: 20px;
+        cursor: pointer;
+    }
+    button:hover {
+    background-color: #45a049; /* Change background color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow on hover */
     }
 </style>
