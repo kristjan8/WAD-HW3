@@ -52,7 +52,7 @@ export default {
 }
 
 /* The header and footer are already set up */
-.header, .footer, .left-sidebar, .right-sidebar {
+.footer, .left-sidebar, .right-sidebar {
   background: gray;
   margin: 10px;
   border-radius: 10px;

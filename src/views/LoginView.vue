@@ -164,8 +164,8 @@ button:disabled {
   font-size: 12px;
 }
 
-/* Styling for header, footer, and sidebars */
-.header, .footer, .left-sidebar, .right-sidebar {
+/* Styling for footer and sidebars */
+.footer, .left-sidebar, .right-sidebar {
   background: gray;
   margin: 10px;
   border-radius: 10px;
