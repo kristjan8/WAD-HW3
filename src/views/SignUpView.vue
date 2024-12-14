@@ -1,13 +1,13 @@
 <template>
   <div class="login">
     <HeaderCompo class="header"></HeaderCompo>
-    <div class="login-content">
-    <!-- Left Sidebar -->
+    <div class="signup-content">
+      <!-- Left Sidebar -->
       <SidebarCompo class="left-sidebar"></SidebarCompo>
 
-      <!-- Login Form -->
-      <div class="login-form">
-        <h2>Login</h2>
+      <!-- Signup Form -->
+      <div class="signup-form">
+        <h2>Signup</h2>
         <form @submit.prevent="submitForm">
           <div class="form-group">
             <label for="email">Email:</label>
@@ -33,175 +33,140 @@
             <p v-if="passwordError" class="error">{{ passwordError }}</p>
           </div>
 
-          <div class="form-actions">
-            <button type="submit" class="login-button" :disabled="!isFormValid">Login</button>
-            <span>Or</span>
-            <button type="button" class="signup-button" @click="goToSignup">Signup</button>
-          </div>
+          <button type="submit" :disabled="!isPasswordValid">Signup</button>
         </form>
       </div>
-        <!-- Right Sidebar -->
+
+      <!-- Right Sidebar -->
       <SidebarCompo class="right-sidebar"></SidebarCompo>
     </div>
     <FooterCompo class="footer"></FooterCompo>
   </div>
 </template>
+
 <script>
-import HeaderCompo from '@/components/HeaderCompo.vue';
+// Import the components you need
 import FooterCompo from '@/components/FooterCompo.vue';
+import HeaderCompo from '@/components/HeaderCompo.vue';
 import SidebarCompo from '@/components/SidebarCompo.vue';
 
 export default {
-  name: 'LoginPage',
+  name: 'SignupPage',
   components: {
-    HeaderCompo,
     FooterCompo,
+    HeaderCompo,
     SidebarCompo
   },
   data() {
     return {
       email: '',
       password: '',
-      emailError: '',
       passwordError: ''
     };
   },
   computed: {
-    // Ensure the form can only be submitted if both fields are valid
-    isFormValid() {
-      return this.emailError === '' && this.passwordError === '';
+    // Ensure that the form can only be submitted if the password is valid
+    isPasswordValid() {
+      return this.passwordError === '';
     }
   },
   methods: {
     // Handle form submission
     submitForm() {
-      this.validateEmail();
-      this.validatePassword();
-
-      if (this.isFormValid) {
-        alert('Login successful!');
-        // Handle login logic, e.g., call API for authentication.
-      } else {
-        alert('Please correct the errors before logging in.');
+      if (this.isPasswordValid) {
+        alert('Form submitted successfully!');
+        // You can handle form submission, e.g., send data to an API.
       }
     },
-    // Validate the email
-    validateEmail() {
-      const email = this.email;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!email) {
-        this.emailError = 'Email is required.';
-      } else if (!emailRegex.test(email)) {
-        this.emailError = 'Please enter a valid email address.';
-      } else {
-        this.emailError = '';
-      }
-    },
     // Validate the password
     validatePassword() {
-      if (!this.password) {
-        this.passwordError = 'Password is required.';
-      } else {
-        this.passwordError = '';
-      }
-    },
-    // Redirect to the Signup page
-    goToSignup() {
-      this.$router.push('/signup'); // Change '/signup' to the actual route of your signup page.
+      const password = this.password;
+      let errors = [];
+
+      // Password validation checks
+      if (password.length < 8 || password.length > 14) errors.push('Length must be between 8 and 15 characters.');
+      if (!/[A-Z]/.test(password)) errors.push('Includes at least one uppercase alphabet character.');
+      if ((password.match(/[a-z]/g) || []).length < 2) errors.push('Includes at least two lowercase alphabet characters.');
+      if (!/\d/.test(password)) errors.push('Includes at least one numeric value.');
+      if (!/^[A-Z]/.test(password)) errors.push('Password should start with an uppercase alphabet.');
+      if (!/_/.test(password)) errors.push('Password should include the character “_”.');
+
+      this.passwordError = errors.length ? 'The password is not valid - ' + errors.join(' ') : '';
     }
   },
   watch: {
-    email() {
-      this.validateEmail();
-    },
     password() {
+      // Validate the password whenever it changes
       this.validatePassword();
     }
   }
 };
 </script>
+
 <style scoped>
+/* Make the home container take the full height of the viewport */
 .login {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
 }
 
-.login-content {
+/* Ensure the main content area takes up available space */
+.signup-content {
   display: flex;
+  flex: 1; /* This makes the signup content area grow and fill available space */
   justify-content: center;
-  align-items: center;
-  flex: 1;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px; /* Add space for the footer */
+  height: 100%; /* Ensure the content takes up full height */
 }
 
-.login-form {
+/* Style for the form */
+.signup-form {
   padding: 20px;
-  background-color: #f0f4f8;
   border-radius: 8px;
+  background-color: #f9f9f9;
   width: 100%;
   max-width: 400px;
-  text-align: center;
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
+/* Form group styling */
 .form-group {
   margin-bottom: 15px;
-  text-align: left;
 }
 
-label {
-  font-weight: bold;
-  display: block;
-}
-
+/* Input styling */
 input {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
+  margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+/* Button styling */
 button {
-  padding: 10px 20px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
-  font-size: 14px;
-  margin: 10px 5px;
-}
-
-.login-button {
-  background-color: #4CAF50;
-}
-
-.signup-button {
-  background-color: #2196F3;
+  width: 100%;
 }
 
 button:disabled {
   background-color: #ccc;
-  cursor: not-allowed;
 }
 
+/* Error message styling */
 .error {
   color: red;
   font-size: 12px;
-  margin-top: 5px;
 }
 
-.form-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
 /* Styling for footer and sidebars */
 .footer, .left-sidebar, .right-sidebar {
   background: gray;
@@ -218,6 +183,7 @@ button:disabled {
   flex-direction: column;
   justify-content: flex-start; /* Align children to the top */
 }
+
 /* Adjust the layout for small screens */
 @media all and (min-width: 600px) {
   .left-sidebar, .right-sidebar {

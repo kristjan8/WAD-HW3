@@ -3,8 +3,11 @@
         <h1>Web Application Development</h1>
         <h3>
             <router-link to="/" class="button">Home</router-link>
-            Homework #3
-            <router-link to="/login" class="button">Signup</router-link></h3>
+            <router-link to="/" class="button">Contacts</router-link>
+            Homework #4
+            <router-link to="/signup" class="button">Signup</router-link>
+            <router-link to="/login" class="button">Login</router-link>
+            </h3>
     </div>
 </template>
   
